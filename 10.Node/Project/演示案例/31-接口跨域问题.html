@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="get">发起GET请求</button>
+    <button id="post">发起POST请求</button>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $('#get').on('click',() => {
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1/api/get',
+                data: {name: '李四',age: 12},
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        });
+        $('#post').on('click',() => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1/api/post',
+                data: {name: '张三',age: 14},
+                success: (res) => {
+                    console.log(res);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
