@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        R:<input type="text" v-model="r"><br>
+        G:<input type="text" v-model="g"><br>
+        B:<input type="text" v-model="b">
+        <!-- 使用Vue的计算属性 -->
+        <div :style="'width: 100px; height: 100px; background-color:' + rgb">{{ rgb }}</div>
+        <button @click="output">输出</button>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                r: 0,
+                g: 0,
+                b: 0,
+            },
+            methods: {
+                output() {
+                    // 使用Vue的计算属性。
+                    console.log(this.rgb);
+                }
+            },
+            // 声明Vue的计算属性。
+            computed: {
+                rgb() {
+                    return `rgb(${this.r},${this.g},${this.b})`;
+                }
+            }
+        });
+    </script>
+</body>
+</html>

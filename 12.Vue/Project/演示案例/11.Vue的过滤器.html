@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用管道符来使用Vue的过滤器 -->
+        <p>{{ str1 | headArt }}</p>
+        <!-- 使用全局过滤器 -->
+        <p>{{ str2 | delet}}</p>
+        <!-- 使用私有过滤器 -->
+        <p>{{ str3 | del}}</p>
+        <!-- 使用多个过滤器 -->
+        <p>{{ str1 | delet | headArt }}</p>
+        <!-- 传递参数给过滤器 -->
+        <p>{{ str1 | add(1) }}</p>
+    </div>
+    <div id="app1">
+        <!-- 使用全局过滤器 -->
+        <p>{{ str1 | delet}}</p>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        // 全局过滤器。
+        Vue.filter('delet',(msg) => {
+            return msg.slice(3);
+        });
+        Vue.filter('del',(msg) => {
+            return msg.slice(1);
+        });
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                str1: 'hello Word',
+                str2: 'friend',
+                str3: 'family'
+            },
+            // 私有过滤器。
+            filters: {
+                headArt(msg) {
+                    return msg.charAt(0).toUpperCase() + msg.slice(1);
+                },
+                del(msg) {
+                    return msg.slice(4);
+                },
+                add(msg,num) {
+                    return msg + num;
+                }
+            }
+        });
+        const vm1 = new Vue({
+            el: '#app1',
+            data: {
+                str1: 'hello Word'
+            },
+            // 私有过滤器。
+            filters: {
+                headArt(msg) {
+                    return msg.charAt(0).toUpperCase() + msg.slice(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

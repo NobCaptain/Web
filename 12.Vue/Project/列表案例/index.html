@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表案例</title>
+</head>
+<body>
+    <!-- 卡片区域 -->
+    <div id="app">
+        <!-- 使用v-on指令绑定点击事件 -->
+        <form action="" @submit.prevent="add">
+            <!-- 添加区域 -->
+            <input type="text" placeholder="请输入品牌名称" v-model.trim="brand">
+            <button type="submit">添加</button>
+            <!-- 表格区域 -->
+            <table>
+                <thead>
+                    <tr>
+                        <td>id</td>
+                        <td>品牌</td>
+                        <td>状态</td>
+                        <td>创建时间</td>
+                        <td>操作</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 使用v-for指令循环渲染列表数据 -->
+                    <tr v-for="item in list" :key="item.id">
+                        <td>{{ item.id }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>
+                            <!-- 使用v-model指令双向绑定数据 -->
+                            <input type="checkbox" :id="'ckbox' + item.id" v-model="item.status">
+                            <!-- 使用v-if指令和v-else指令来按需渲染想要的内容 -->
+                            <label :for="'ckbox' + item.id" v-if="item.status">已启用</label>
+                            <label :for="'ckbox' + item.id" v-else>已禁用</label>
+                        </td>
+                        <td>{{ item.time }}</td>
+                        <td>
+                            <!-- 使用v-on指令绑定点击事件 -->
+                            <a href="javascript:;" @click="remove(item.id)">删除</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                // 我们使用brand属性暂存用户想要添加的品牌名称。
+                brand: '',
+                // 我们使用nextId属性存储下一个可用的id。
+                nextId: 3,
+                list: [
+                    {
+                        id: 1,
+                        name: '奥迪',
+                        status: true,
+                        time: new Date()
+                    },
+                    {
+                        id: 2,
+                        name: '奔驰',
+                        status: false,
+                        time: new Date()
+                    }
+                ]
+            },
+            methods: {
+                // 当用户点击删除按钮时，触发remove函数，从而删除数据。
+                remove(id) {
+                    this.list = this.list.filter((item) => {
+                        return item.id !== id;
+                    });
+                },
+                // 当用户点击添加按钮时，触发add函数，从而添加数据。
+                add() {
+                    // 如果用户输入的品牌名称为空，要提醒用户。
+                    if (this.brand === '') return alert('必须填写品牌名称');
+                    // 需要存储的用户输入的品牌的数据。
+                    const obj = {
+                        id: this.nextId,
+                        name: this.brand,
+                        status: true,
+                        time: new Date()
+                    }
+                    // 将用户输入的品牌的数据存储在list属性中的数组中。
+                    this.list.push(obj);
+                    // 将用户输入的品牌的数据存储完后，需要将brand属性清空。
+                    this.brand = '';
+                    // 将用户输入的品牌的数据存储完后，需要将nextId属性中的属性值自增。
+                    this.nextId++;
+                }
+            },
+        });
+    </script>
+</body>
+</html>

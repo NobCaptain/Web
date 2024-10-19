@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" v-model="str">
+        <input type="text" v-model="str1">
+        <input type="text" v-model="info.username">
+        <input type="text" v-model="info.password">
+    </div>
+    <script src="./js/Vue.js"></script>
+    <script>
+        const vm = new Vue({
+            el: '#app',
+            data: {
+                str: '',
+                str1: '',
+                info: {
+                    username: '',
+                    password: ''
+                }
+            },
+            watch: {
+                // 监听该Vue框架的实例对象中的data属性中的str属性中的属性值是否发生了变化，并使用方法格式的Vue的侦听器。
+                str(newval,oldval) {
+                    console.log(newval,oldval);
+                },
+                // 监听该Vue框架的实例对象中的data属性中的str1属性中的属性值是否发生了变化，并使用对象格式的Vue的侦听器。
+                str1: {
+                    handler(newval,oldval) {
+                        console.log(1,newval,oldval);
+                    },
+                    // 使用Vue的侦听器的immediate选项。
+                    immediate: true
+                },
+                info: {
+                    handler(newval) {
+                        console.log(newval);
+                    },
+                    // 使用Vue的侦听器的deep选项。
+                    deep: true
+                },
+                // 监听该Vue框架的实例对象中的data属性中的info属性中的对象中的password属性的属性值是否发生了变化，并使用对象格式的Vue的侦听器。
+                'info.password'(newval,oldval) {
+                    console.log(newval,oldval);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

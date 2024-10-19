@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 声明一个将要被Vue框架所控制的DOM元素 -->
+    <div id="box">
+        <p v-text="username"></p>
+        <p v-text="username">你好</p>
+        <p v-text="text"></p>
+        <p v-text="test = '你好'"></p>
+    </div>
+    <!-- 导入Vue框架文件 -->
+    <script src="./js/Vue.js"></script>
+    <!-- 创建Vue框架的实例化对象 -->
+     <script>
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                username: '张三',
+                text: '<h1>pink<h1>',
+                test: ''
+            }
+        });
+     </script>
+</body>
+</html>

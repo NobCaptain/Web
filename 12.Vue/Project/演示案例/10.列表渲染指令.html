@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 声明一个将要被Vue框架所控制的DOM元素 -->
+    <div id="box">
+        <!-- 使用v-for指令 -->
+        <table>
+            <thead>
+                <th>id</th>
+                <th>名称</th>
+            </thead>
+            <tbody>
+                <tr v-for="userdata in list">
+                    <td>{{ userdata.id }}</td>
+                    <td>{{ userdata.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <!-- 使用v-for指令获取item存储的每一项数据在将要被循环的数组中的索引号 -->
+        <table>
+            <thead>
+                <th>索引</th>
+                <th>名称</th>
+                <th>id</th>
+            </thead>
+            <tbody>
+                <tr v-for="(userdata,index) in list" :title="'索引' + index">
+                    <td>{{ index }}</td>
+                    <td>{{ userdata.id }}</td>
+                    <td>{{ userdata.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <!-- v-for指令的官方推荐写法 -->
+        <table>
+            <thead>
+                <th>索引</th>
+                <th>名称</th>
+                <th>id</th>
+            </thead>
+            <tbody>
+                <tr v-for="(userdata,index) in list" :key="userdata.id">
+                    <td>{{ index }}</td>
+                    <td>{{ userdata.id }}</td>
+                    <td>{{ userdata.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- 导入Vue框架文件 -->
+    <script src="./js/Vue.js"></script>
+    <!-- 创建Vue框架的实例化对象 -->
+     <script>
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                list: [
+                    {id: 1, username: '张三'},
+                    {id: 2, username: '李四'},
+                    {id: 3, username: '王五'}
+                ]
+            }
+        });
+     </script>
+</body>
+</html>

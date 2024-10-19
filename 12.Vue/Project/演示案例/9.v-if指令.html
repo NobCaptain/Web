@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 声明一个将要被Vue框架所控制的DOM元素 -->
+    <div id="box">
+        <!-- v-if指令 -->
+        <p v-if="flag">v-if指令</p>
+        <!-- v-if指令和v-else指令 -->
+        <P v-if="num > 2">大于2</P>
+        <P v-else>小于2</P>
+        <!-- v-if指令和v-else-if指令和v-else指令 -->
+        <P v-if="cj === 'A'">优秀</P>
+        <P v-else-if="cj === 'B'">良好</P>
+        <P v-else>差劲</P>
+    </div>
+    <!-- 导入Vue框架文件 -->
+    <script src="./js/Vue.js"></script>
+    <!-- 创建Vue框架的实例化对象 -->
+     <script>
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                flag: true,
+                num: 1,
+                cj: 'A'
+            }
+        });
+     </script>
+</body>
+</html>

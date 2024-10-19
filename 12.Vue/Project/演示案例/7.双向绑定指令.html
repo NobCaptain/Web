@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 声明一个将要被Vue框架所控制的DOM元素 -->
+    <div id="box">
+        <!-- 使用双向绑定指令 -->
+        <div>{{ username }}</div>
+        <input type="text" v-model="username">
+        <div>下列表所选的城市：{{ city }}</div>
+        <select v-model="city">
+            <option value="">请选择你的城市</option>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="广州">广州</option>
+            <option value="深圳">深圳</option>
+        </select>
+        <hr>
+        <!-- 双向绑定指令和属性绑定指令的区别 -->
+        <div>{{ usernameCopy1 }}</div>
+        <input type="text" v-model="usernameCopy1">
+        <input type="text" :value="usernameCopy1">
+        <hr>
+        <!-- 双向绑定指令只能用在表单类标签中 -->
+        <div style="width: 100px; height: 100px; background-color: yellow;" v-model="usernameCopy2"></div>
+        <hr>
+        <!-- 双向绑定指令的number修饰符 -->
+        <input type="text" v-model="usernameCopy3">
+        <input type="text" v-model.number="usernameCopy3">
+        <hr>
+        <!-- 双向绑定指令的trim修饰符 -->
+        <input type="text" v-model="usernameCopy4">
+        <input type="text" v-model.trim="usernameCopy4">
+        <hr>
+        <!-- 双向绑定指令的lazy修饰符 -->
+        <input type="text" v-model="usernameCopy5">
+        <input type="text" v-model.lazy="usernameCopy5">
+    <!-- 导入Vue框架文件 -->
+    <script src="./js/Vue.js"></script>
+    <!-- 创建Vue框架的实例化对象 -->
+     <script>
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                username: '李四',
+                city: '',
+                usernameCopy1: '李四',
+                usernameCopy2: '李四',
+                usernameCopy3: '李四',
+                usernameCopy4: '李四',
+                usernameCopy5: '李四'
+            }
+        });
+     </script>
+</body>
+</html>

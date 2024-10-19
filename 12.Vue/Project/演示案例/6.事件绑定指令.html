@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 声明一个将要被Vue框架所控制的DOM元素 -->
+    <div id="box">
+        <!-- 使用事件绑定指令来为DOM元素绑定指定的触发事件 -->
+        <p>数字：{{count}}</p>
+        <button v-on:click="add">+1</button>
+        <button @click="bus">-1</button>
+        <hr>
+        <!-- 使用事件绑定指令来为DOM元素绑定指定的触发事件，并传递参数 -->
+        <p>数字：{{countCopy1}}</p>
+        <button v-on:click="addCopy1(2)">+2</button>
+        <button v-on:click="busCopy1(2,3)">-2</button>
+        <hr>
+        <!-- 使用事件绑定指令来为DOM元素绑定指定的触发事件，并获取事件对象 -->
+        <p>数字：{{countCopy2}}</p>
+        <button v-on:click="addCopy2">+1</button>
+        <button v-on:click="jian(1)">-1</button>
+        <button v-on:click="busCopy2(1,$event)">-1</button>
+        <hr>
+        <!-- 使用事件绑定指令来为DOM元素绑定指定的触发事件，并使用Vue框架的事件修饰符 -->
+        <a href="https://www.baidu.com/">跳转到百度</a>
+        <div @click="out1" style="width: 100px;height: 100px;background-color: yellow;">
+            <button @click="out2">按钮</button>
+        </div>
+        <a href="https://www.baidu.com/" @click.prevent="zuzhi">跳转到百度</a>
+        <div @click="out3" style="width: 100px;height: 100px;background-color: black;">
+            <button @click.stop="out4">按钮</button>
+        </div>
+        <hr>
+        <!-- 使用事件绑定指令来为DOM元素绑定指定的触发事件，并使用Vue框架的按键修饰符 -->
+        <input type="text" @keyup="inputout">
+        <input type="text" @keyup.esc="tips">
+    </div>
+    <!-- 导入Vue框架文件 -->
+    <script src="./js/Vue.js"></script>
+    <!-- 创建Vue框架的实例化对象 -->
+     <script>
+        const vm = new Vue({
+            el: '#box',
+            data: {
+                count: 0,
+                countCopy1: 0,
+                countCopy2: 0,
+            },
+            methods: {
+                // 使用事件绑定指令来为DOM元素绑定指定的触发事件时，所使用的函数。
+                add: function () {
+                    vm.count += 1;
+                },
+                bus() {
+                    this.count -= 1;
+                },
+                // 使用事件绑定指令来为DOM元素绑定指定的触发事件，并传递参数时，所使用的函数。
+                addCopy1(n) {
+                    this.countCopy1 += n;
+                },
+                busCopy1(n,num) {
+                    this.countCopy1 -= n;
+                    console.log(num);
+                },
+                // 使用事件绑定指令来为DOM元素绑定指定的触发事件，并获取事件对象时，所使用的函数。
+                addCopy2(e) {
+                    this.countCopy2 += 1;
+                    e.target.style.backgroundColor = 'red';
+                },
+                jian(n) {
+                    this.countCopy2 -= 1;
+                },
+                busCopy2(n,e) {
+                    this.countCopy2 -= n;
+                    e.target.style.backgroundColor = 'pink';
+                },
+                // 使用事件绑定指令来为DOM元素绑定指定的触发事件，并使用Vue框架的事件修饰符时，所使用的函数。
+                out1() {
+                    console.log('div');
+                },
+                out2() {
+                    console.log('button');
+                },
+                zuzhi() {
+                    console.log('阻止超链接标签进行跳转');
+                },
+                out3() {
+                    console.log('div');
+                },
+                out4() {
+                    console.log('button');
+                },
+                // 使用事件绑定指令来为DOM元素绑定指定的触发事件，并使用Vue框架的按键修饰符时，所使用的函数。
+                inputout(e) {
+                    console.log('触发键盘');
+                },
+                tips(e) {
+                    e.target.value = '';
+                }
+            }
+        });
+     </script>
+</body>
+</html>
