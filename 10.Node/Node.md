@@ -1015,7 +1015,7 @@
   module.exports.username = '张三';
   ```
 
-  > 注：当以上代码被导入时，会返回 `{aeg: 18,username: '张三'}` 给 `require()` 方法。
+  > 注：当以上代码被导入时，会返回 `{aeg: 20,username: '张三'}` 给 `require()` 方法。
 
 - 演示代码之自定义模块：
 
