@@ -479,7 +479,7 @@
 
      ![51](imgs/51.gif)
 
-- 注意点：当我们将工作区中的文件回退到指定的版本时，我们无法使用 `git log --pretty=oneline` 命令，来在一行上查看Git的所有的提交历史，但是我们可以使用 `git reflog --pretty=oneline` 命令，来在一行上查看Git的所有的提交历史，并且我们还可以使用 `git reset --hard 版本的ID号` 命令，将工作区中的文件回退到指定的版本，如下图所示：
+- 注意点：当我们将工作区中的文件回退到指定的版本时，`git log --pretty=oneline` 命令，只能在一行上查看回退到哪个版本，该版本时的Git的所有提交历史，因为 `git log --pretty=oneline` 命令是查看不到已删除的提交历史的，但是我们可以使用 `git reflog --pretty=oneline` 命令，来在一行上查看Git的所有的提交历史，包括已删除的提交历史，并且我们还可以使用 `git reset --hard 版本的ID号` 命令，将工作区中的文件回退到指定的版本，如下图所示：
 
   ![52](imgs/52.gif)
 
